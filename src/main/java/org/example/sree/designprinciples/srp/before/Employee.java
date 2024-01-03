@@ -1,10 +1,6 @@
 package org.example.sree.designprinciples.srp.before;
 
 
-/**
- * SRP--(Single responsibility Principle) ---A class must have only one reason to change
- *
- * */
 public class Employee {
     private Long id;
 
