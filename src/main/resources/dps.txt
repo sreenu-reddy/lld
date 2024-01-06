@@ -1,2 +1,52 @@
 SRP--(Single responsibility Principle) ---A class must have only one reason to change.
+
 OCP--(Open Closed Principle) A class should be open for extension but closed for modification.   code against abstraction rather than concrete classes.
+
+  -- 1.  Let's consider the scenario of a game with some superheroes (Spider Man , Bat Man, Captain America ). Now we have two classes , Attacker and SuperHero.
+
+     Now in SuperHero class we have following methods
+
+     attackWithCaptainAmerica()
+     attackWithBatMan()
+     attackWithSpiderMan()
+
+     And the Attacker class has a list of superHeroes from which we want to attack.
+
+     2. Now to execute the attack we always need to check through switch statements or if-else statements which super hero attack method we have to invoke present in SuperHero class. It is not a good coding practice to have multiple conditional statements in our code.
+
+     3. Let's imagine we want to add a new superhero Iron Man in our game , for that we have to make changes in our code in multiple positions. Example conditional statements in SuperHero class , attack Method in attacker class . Hence We are unable to extend new features without modifying the existing code.
+
+     4. We should be able to extend new features without modifying the existing code.
+
+     5. Ideal expectations is that the different classes should be independent of each other
+
+     6. In the above example , SuperHero is an abstract thing whereas CaptainAmerica , BatMan , IronMan, SpiderMan are concrete things.
+
+     7. Code Should be written in such a way so that you are coding to abstraction , Not to concretion.
+
+     9. Concretion means Our Module Attacker Just not only knows about SuperHero , But also their attributes and methods i.e. CaptainAmerica , BatMan, SpiderMan, attackWithCaptainAmerica(), attackWithBatMan(), attackWithSpiderMan().
+
+     10. We can Use Polymorphism to solve this Problem we faced in the above example.
+
+     12. We can create an interface called SuperHero and make different classes for CaptainAmerica , BatMan , SpiderMan with their own attack Method . Now if we want to add any other SuperHero like Iron Man , then we can do it very easily without making any modification to our existing code.
+
+LSP-- (Liskov Substitution Principle)  --- The Liskov Substitution Principle (LSP) states that objects of a superclass should be replaceable with objects of its subclasses without breaking the application.
+  --1. Let’s suppose there is an abstract class Employee with an abstract method salary calculator . Also we have some concrete classes FTE and INTERN. Now the payslip calculation logic is different for both of these two , as FTE may have some stocks whereas Intern will have only fixed stipends.
+
+    2. Let’s suppose we have a volunteer class as well , now these volunteers won't take any salary for their work But need all other methods and attributes of the employee class .
+
+    3. Here comes the problem. If for the volunteer class we return 0 as salary from the salary calculator method then it may arise many problems in our near future.
+
+    4. Hence invocation of the salary calculator method of an employee on an instance of the volunteer class is totally incorrect and illegal
+
+    5. Whenever something illegal happens in our code , we throw an error code or an exception.
+
+    6. But throwing an exception is not a proper solution for this problem , as it may also cause some drastic consequences in the near future.
+
+    7.Hence we should never use inheritance for code reuse.
+
+    8. We should use inheritance if and only if it has a strict “ IS - A “ relationship.
+
+    9. Example : FTE IS A employee , Intern IS A Employee , But Volunteer IS NOT A Employee.
+
+    10. In other words, what we want is to have the objects of our subclasses behaving the same way as the objects of our superclass
