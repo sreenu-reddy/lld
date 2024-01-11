@@ -49,4 +49,46 @@ LSP-- (Liskov Substitution Principle)  --- The Liskov Substitution Principle (LS
 
     9. Example : FTE IS A employee , Intern IS A Employee , But Volunteer IS NOT A Employee.
 
-    10. In other words, what we want is to have the objects of our subclasses behaving the same way as the objects of our superclass
+    10. In other words, what we want is to have the objects of our subclasses behaving the same way as the objects of our superclass.
+
+    ISP-- (Interface Segregation principle) : “Clients should not be forced to depend upon interfaces that they do not use.”
+
+     -- 1. Let’s take an example of designing a cricket game.
+        It has a variety of players.
+        Important entity is the player Hence Player should be abstract . So we will define an interface of Player.
+
+        2. Let Player has different methods which are
+
+        Bat()
+        Bowl()
+        Field()
+        KeepWicket()
+
+        3. There can be different concrete classes which may or may not use every method of the interface but requires a subset of that interface. Example PureBatMan only requires Bat() and Field() , WicketKeeper Only Needs KeepWicket() and Bowl().
+
+        4.  Hence Defining every abstract method for every class is not a good option. As it will not fit properly in the Inheritance Tree.
+
+        5. Inheritance Hierarchy is Tricky.
+
+        6. A new Entity that comes might be composed of some subsets of behavior which cannot be achievable through existing Inheritance Tree.
+
+        7. Player interface need not contain all methods i.e Bat() , Bowl(), Field(), KeepWicket().
+
+        8.  Instead of a single interface , we can create different multiple interfaces.
+
+         InterFace Method
+
+        << interface >> Player    →    Bat()
+
+        << interface >> Bowler   →    Bowl()
+
+        << interface >> Fielder   →    Field()
+
+        << interface >> Keeper   →    KeepWicket()
+
+        9. We are allowed to create a class which can implement multiple interfaces.
+        10. We have implemented all abstract entities in a flat manner , which means they do not have any hierarchy or dependencies between them. Now if we want to add another abstract entity then we can easily do it without any difficulties.
+
+        11. *** Composition is better than inheritance.
+
+        12. **** NOTE : Be cautious while making different interfaces, do it only when it is extremely important else you will end up flooding out your code with multiple non needed interfaces.
