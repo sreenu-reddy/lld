@@ -92,3 +92,68 @@ LSP-- (Liskov Substitution Principle)  --- The Liskov Substitution Principle (LS
         11. *** Composition is better than inheritance.
 
         12. **** NOTE : Be cautious while making different interfaces, do it only when it is extremely important else you will end up flooding out your code with multiple non needed interfaces.
+  DSP--
+       1. High Level Modules or classes or any piece of code we wrote from scratch should depend upon abstract classes or interface. It should not depend upon concretion.
+
+       2. Let’s take an example of an e-commerce System.It will have components for Purchase Flow Manager which will Manage the payments and send notification to the users for their purchase and payments.
+
+       3. Now we Know that if we assign two works i.e. Payment process and notification sending to one single class or entity then it will violate our Single Responsibility design Principle.
+
+       4. Hence we will divide Purchase Flow Manager ( High Level Module ) into further interfaces and classes (Low Level Modules).
+       6. Payment can be done using different modes like cash , UPI , Net Banking , Debit Card etc Hence there will be separate classes for each method. Same goes for Notification sender , Notification can be sent via SMS or Email , so there will be separate classes for these too.
+
+       7.Dependency Inversion Principle : It says that High Level Module Should not depend on Low Level Modules Rather Both should depends on Abstractions
+
+       8. Using DIP also asserts the Open Close Principle.
+
+       9. Always Make sure not to depend upon the business logic class because they change very frequently.
+
+       10. Consider this piece of code.
+
+       public class PurchaseFlowManager
+
+       {
+
+           private final PaymentProcessor paymentProcessor;
+
+           private final NotificationSender notificationSender;
+
+
+
+           public PurchaseFlowManager(PaymentProcessor paymentProcessor,NotificationSender notificationSender)
+
+           {
+
+        this.paymentProcessor = paymentProcessor;
+
+        this.notificationSender = notificationSender;
+
+           }
+
+
+
+           public void triggerPurchaseFlow(int productId, int customerId)
+
+           {
+
+               //some stuff
+
+           }
+
+       }
+
+       We are coding against the interfaces , Not against the concrete interfaces.
+
+       Now it's up to the user what instance of PaymentProcessor and What instances of NotificationSender it wants to inject over here.
+
+       This thing is also known as Dependency injection.
+
+       11.Dependency Injection can be very useful as it allows us to compose PurchaseFlowManager of different behavior. Example UPI + SMS , Net Banking + Email etc .
+
+       12. Using Dependency injection we delay the new() Keyword. Hence we are not creating any new Instance , instead User creates the instances according to their needs.
+
+       13. We can Perform Better Testing Using Dependency Injection.As it allows us to Test a single Unit or class .
+
+       14. Many Unit Testing Frameworks give us the features of Mocked Objects for unit testing.
+
+       15.Mocked Objects are the replica of the object of some other class which will be needed while testing the current module so that we don’t have to switch between modules or classes while testing.
